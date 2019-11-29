@@ -41,7 +41,7 @@ class Login extends React.Component<props> {
                     })(
                         <Input
                             prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                            placeholder="用户名"
+                            placeholder="用户名 默认:admin"
                         />,
                     )}
                 </Form.Item>
@@ -52,7 +52,7 @@ class Login extends React.Component<props> {
                         <Input
                             prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                             type="password"
-                            placeholder="密码"
+                            placeholder="密码 默认:123456"
                         />,
                     )}
                 </Form.Item>

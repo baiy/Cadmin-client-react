@@ -5,6 +5,7 @@ import request from "src/utils/request"
 import {getToken} from "src/utils/helper"
 import {action} from "./reducers/admin";
 import {connect} from 'react-redux'
+import { message } from 'antd';
 
 interface props {
     initialize(data)
@@ -25,6 +26,8 @@ class App extends React.Component<props> {
             }).get()
         }
         this.removeLoading()
+        console.log("123123123")
+        message.info('注意:服务端每个小时会自动重置数据库,重置后需要重新登录',3600);
     }
 
     removeLoading(){
