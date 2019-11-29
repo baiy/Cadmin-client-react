@@ -2,6 +2,7 @@
   "name": "cadmin-client-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@types/jest": "24.0.19",
     "@types/node": "12.11.6",
