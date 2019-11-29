@@ -1,0 +1,17 @@
+.admin-menu-lists .ant-tree-node-content-wrapper{
+    width: 95%;
+}
+.admin-menu-icon-select-item{
+    text-align: center;
+    display: block;
+    color: #5c6b77;
+    height: 95px;
+    overflow: hidden;
+    padding: 10px;
+    cursor: pointer;
+}
+.admin-menu-icon-select-item:hover {
+    color: #fff;
+    background-color: #1890ff;
+    border-radius: 4px;
+}

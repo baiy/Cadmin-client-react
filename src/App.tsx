@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Main from "src/layouts/main"
+import Login from "src/layouts/login"
+import request from "src/utils/request"
+import {getToken} from "src/utils/helper"
+import {action} from "./reducers/admin";
+import {connect} from 'react-redux'
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface props {
+    initialize(data)
+
+    logout()
+
+    user: object
+    isLogin: boolean
 }
 
-export default App;
+class App extends React.Component<props> {
+    componentDidMount() {
+        if (getToken()){
+            return request("/load").success(response => {
+                this.props.initialize(response.data)
+            }).error(() => this.props.logout()).complete(() => {
+                this.removeLoading()
+            }).get()
+        }
+        this.removeLoading()
+    }
+
+    removeLoading(){
+        // @ts-ignore
+        document.querySelector("#loading").remove();
+    }
+
+    render() {
+        return <div>{this.props.isLogin ? <Main/> : <Login/>}</div>
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.admin.user,
+        isLogin: !!state.admin.user.id,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initialize: (data) => {
+            dispatch(action.all(data))
+        },
+        logout() {
+            dispatch(action.user())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
