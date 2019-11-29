@@ -18,6 +18,7 @@ interface props {
 
 class App extends React.Component<props> {
     componentDidMount() {
+        message.info('注意:服务端每个小时会自动重置数据库,重置后需要重新登录',3600);
         if (getToken()){
             return request("/load").success(response => {
                 this.props.initialize(response.data)
@@ -26,8 +27,6 @@ class App extends React.Component<props> {
             }).get()
         }
         this.removeLoading()
-        console.log("123123123")
-        message.info('注意:服务端每个小时会自动重置数据库,重置后需要重新登录',3600);
     }
 
     removeLoading(){
