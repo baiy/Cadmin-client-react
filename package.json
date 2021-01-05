@@ -10,7 +10,7 @@
     "@types/react-router": "^5.1.2",
     "@types/react-router-dom": "^5.1.0",
     "antd": "^3.24.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "localStorage": "^1.0.4",
     "lodash": "^4.17.15",
     "marked": "^0.7.0",
